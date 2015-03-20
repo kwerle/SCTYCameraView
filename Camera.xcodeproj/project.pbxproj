@@ -13,6 +13,7 @@
 		E85CE6001AB22C90007FC7DB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E85CE5FF1AB22C90007FC7DB /* Images.xcassets */; };
 		E85CE6031AB22C90007FC7DB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85CE6011AB22C90007FC7DB /* LaunchScreen.xib */; };
 		E85CE60F1AB22C90007FC7DB /* CameraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85CE60E1AB22C90007FC7DB /* CameraTests.swift */; };
+		E85CE6191AB22CE3007FC7DB /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85CE6181AB22CE3007FC7DB /* CameraView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		E85CE6081AB22C90007FC7DB /* CameraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CameraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E85CE60D1AB22C90007FC7DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E85CE60E1AB22C90007FC7DB /* CameraTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTests.swift; sourceTree = "<group>"; };
+		E85CE6181AB22CE3007FC7DB /* CameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CameraView.swift; path = ../../SiteSurveyApp/SiteSurvey/Camera/CameraView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				E85CE5F81AB22C90007FC7DB /* AppDelegate.swift */,
+				E85CE6181AB22CE3007FC7DB /* CameraView.swift */,
 				E85CE5FA1AB22C90007FC7DB /* ViewController.swift */,
 				E85CE5FC1AB22C90007FC7DB /* Main.storyboard */,
 				E85CE5FF1AB22C90007FC7DB /* Images.xcassets */,
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E85CE6191AB22CE3007FC7DB /* CameraView.swift in Sources */,
 				E85CE5FB1AB22C90007FC7DB /* ViewController.swift in Sources */,
 				E85CE5F91AB22C90007FC7DB /* AppDelegate.swift in Sources */,
 			);
