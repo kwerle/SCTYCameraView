@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,16 +17,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WCq-Jj-yH5" customClass="CameraView" customModule="Camera">
-                                <rect key="frame" x="0.0" y="0.0" width="584" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="WCq-Jj-yH5" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="din-Yc-yLW"/>
-                            <constraint firstItem="WCq-Jj-yH5" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="gon-k7-ZYC"/>
-                            <constraint firstItem="WCq-Jj-yH5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="oPS-j6-SAJ"/>
-                            <constraint firstItem="WCq-Jj-yH5" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="utL-o3-Yc3"/>
+                            <constraint firstItem="WCq-Jj-yH5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="9MA-pW-eJT"/>
+                            <constraint firstAttribute="trailing" secondItem="WCq-Jj-yH5" secondAttribute="trailing" id="OpX-Na-mag"/>
+                            <constraint firstItem="WCq-Jj-yH5" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="VYg-xU-cDr"/>
+                            <constraint firstItem="WCq-Jj-yH5" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="id0-0K-p3c"/>
                         </constraints>
                     </view>
                     <connections>
