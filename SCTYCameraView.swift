@@ -10,6 +10,11 @@ import UIKit
 import AVFoundation
 import CoreMedia
 
+@objc protocol SCTYCameraViewDelegate {
+    // This may be outside the main thread
+    func pictureTaken(image: UIImage)
+}
+
 @objc class SCTYCameraView: UIView, UIGestureRecognizerDelegate {
 
     let captureSession = AVCaptureSession()
@@ -23,6 +28,8 @@ import CoreMedia
     @objc @IBOutlet var snapButtonView: UIView!
     // The button used to swap front/back view
     @objc @IBOutlet var reverseButton: UIView?
+    
+    @objc @IBOutlet var delegate: SCTYCameraViewDelegate?
     
     var captureOutput: AVCaptureStillImageOutput?
     
@@ -141,6 +148,7 @@ import CoreMedia
         captureOutput!.captureStillImageAsynchronouslyFromConnection(captureOutput?.connectionWithMediaType(AVMediaTypeVideo)) { (buffer, error) -> Void in
             let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(buffer)
             let image = UIImage(data: imageData)
+            self.delegate?.pictureTaken(image!)
         }
     }
     
