@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var tempButton: UIButton!
-    @IBOutlet weak var cameraView: CameraView!
+    @IBOutlet weak var cameraView: SCTYCameraView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
