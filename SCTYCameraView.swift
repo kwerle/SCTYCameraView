@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import CoreMedia
 
 @objc class SCTYCameraView: UIView, UIGestureRecognizerDelegate {
 
@@ -22,6 +23,8 @@ import AVFoundation
     @objc @IBOutlet var snapButtonView: UIView!
     // The button used to swap front/back view
     @objc @IBOutlet var reverseButton: UIView?
+    
+    var captureOutput: AVCaptureStillImageOutput?
     
     lazy var devices: [AVCaptureDevice] = (AVCaptureDevice.devices() as [AVCaptureDevice]).filter {
         return $0.hasMediaType(AVMediaTypeVideo)
@@ -135,7 +138,10 @@ import AVFoundation
     }
     
     func takePicture(button: UIButton) {
-        println("takePicture")
+        captureOutput!.captureStillImageAsynchronouslyFromConnection(captureOutput?.connectionWithMediaType(AVMediaTypeVideo)) { (buffer, error) -> Void in
+            let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(buffer)
+            let image = UIImage(data: imageData)
+        }
     }
     
     override func translatesAutoresizingMaskIntoConstraints() -> Bool {
@@ -152,21 +158,30 @@ import AVFoundation
             return
         }
         
-        var err : NSError? = nil
+        var error : NSError? = nil
+        captureSession.beginConfiguration()
         captureSession.removeInput(captureSession.inputs?.first as AVCaptureDeviceInput?)
-        captureSession.addInput(AVCaptureDeviceInput(device: captureDevice, error: &err))
-        if err != nil {
-            println("error: \(err?.localizedDescription)")
+        captureSession.addInput(AVCaptureDeviceInput(device: captureDevice, error: &error))
+        if error != nil {
+            println("error: \(error?.localizedDescription)")
+        }
+        
+        captureOutput = AVCaptureStillImageOutput()
+        if (captureSession.canAddOutput(captureOutput)) {
+            captureOutput?.outputSettings = [AVVideoCodecKey: AVVideoCodecJPEG]
+            captureSession.addOutput(captureOutput)
         }
         
         if (previewLayer == nil) {
             let layer = AVCaptureVideoPreviewLayer(session: captureSession)
-            //        previewLayer?.bounds = self.layer.bounds
             self.layer.addSublayer(layer)
-            captureSession.startRunning()
             layer.frame = self.layer.bounds
             previewLayer = layer
+        } else {
+            captureSession.stopRunning()
         }
+        captureSession.commitConfiguration()
+        captureSession.startRunning()
     }
     
     func setFocus(sender: UITapGestureRecognizer) {
