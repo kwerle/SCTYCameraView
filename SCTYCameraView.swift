@@ -15,6 +15,7 @@ import CoreMedia
     func pictureTaken(image: UIImage)
 }
 
+//@IBDesignable
 @objc class SCTYCameraView: UIView, UIGestureRecognizerDelegate {
 
     let captureSession = AVCaptureSession()
@@ -29,7 +30,7 @@ import CoreMedia
     // The button used to swap front/back view
     @objc @IBOutlet var reverseButton: UIView?
     
-    @objc @IBOutlet var delegate: SCTYCameraViewDelegate?
+    @objc @IBOutlet weak var delegate: AnyObject?
     
     var captureOutput: AVCaptureStillImageOutput?
     
@@ -66,6 +67,9 @@ import CoreMedia
         }
     }
     
+    func myDelegate() -> SCTYCameraViewDelegate? {
+        return delegate as? SCTYCameraViewDelegate
+    }
     
     func addFocusGesture() {
         let touchGestureRecognizer = UITapGestureRecognizer(target: self, action: "setFocus:")
