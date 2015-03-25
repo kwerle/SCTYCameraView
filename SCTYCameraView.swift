@@ -21,7 +21,7 @@ import CoreMedia
     let captureSession = AVCaptureSession()
     
     // The current capture device if there is one
-    @objc var captureDevice: AVCaptureDevice?
+    @objc var captureDevice: AVCaptureDevice? // Should this be a weak ref?
     // The capture layer - does not changes
     @objc var previewLayer: AVCaptureVideoPreviewLayer?
     
@@ -65,10 +65,6 @@ import CoreMedia
         } else {
             addNoCameraLabel()
         }
-    }
-    
-    func myDelegate() -> SCTYCameraViewDelegate? {
-        return delegate as? SCTYCameraViewDelegate
     }
     
     func addFocusGesture() {
@@ -150,9 +146,17 @@ import CoreMedia
     
     func takePicture(button: UIButton) {
         captureOutput!.captureStillImageAsynchronouslyFromConnection(captureOutput?.connectionWithMediaType(AVMediaTypeVideo)) { (buffer, error) -> Void in
-            let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(buffer)
-            let image = UIImage(data: imageData)
-            self.delegate?.pictureTaken(image!)
+            if let e = error? {
+                println("Error: \(e)")
+            } else {
+                let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(buffer)
+                let image = UIImage(data: imageData)
+                if let d = self.delegate as? SCTYCameraViewDelegate {
+                    dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                        d.pictureTaken(image!)
+                    }
+                }
+            }
         }
     }
     
